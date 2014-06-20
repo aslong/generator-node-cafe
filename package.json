@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Yeoman coffeescript based node.js app generator",
   "license": "MIT",
-  "main": "generators/app/index.js",
+  "main": "app/index.js",
   "repository": "aslong/generator-coffee-node",
   "author": {
     "name": "Andrew Long",
