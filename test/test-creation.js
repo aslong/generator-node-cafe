@@ -11,7 +11,7 @@ describe('coffee-node generator', function () {
       }
 
       this.app = helpers.createGenerator('coffee-node:app', [
-        '../../app'
+        '../../generators/app'
       ]);
       done();
     }.bind(this));
