@@ -1,10 +1,9 @@
 'use strict';
-var util = require('util');
-var path = require('path');
+var util   = require('util');
+var path   = require('path');
 var yeoman = require('yeoman-generator');
-var yosay = require('yosay');
-var chalk = require('chalk');
-
+var yosay  = require('yosay');
+var chalk  = require('chalk');
 
 var CoffeeNodeGenerator = yeoman.generators.Base.extend({
   init: function () {
