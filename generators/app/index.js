@@ -7,16 +7,8 @@ var chalk = require('chalk');
 
 
 var CoffeeNodeGenerator = yeoman.generators.Base.extend({
-  method1: function () {
-    console.log("method 1 just ran")
-  },
-
-  method2: function () {
-    console.log("method 2 just ran")
-  },
-
   init: function () {
-    this.pkg = require('../package.json');
+    this.pkg = require('../../package.json');
 
     this.on('end', function () {
       if (!this.options['skip-install']) {
