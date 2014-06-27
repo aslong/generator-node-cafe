@@ -50,4 +50,4 @@ var NodeCafeGenerator = yeoman.generators.Base.extend({
   }
 });
 
-module.exports = CoffeeNodeGenerator;
+module.exports = NodeCafeGenerator;
