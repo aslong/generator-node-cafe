@@ -36,17 +36,28 @@ var NodeCafeGenerator = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  app: function () {
-    this.mkdir('app');
-    this.mkdir('app/templates');
-
-    this.copy('_package.json', 'package.json');
-    this.copy('_bower.json', 'bower.json');
-  },
-
   projectfiles: function () {
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
+    this.copy('gitignore', '.gitignore');
+    this.copy('_README.md', 'README.md');
+
+    this.copy('_package.json', 'package.json');
+    this.copy('_bower.json', 'bower.json');
+    this.copy('_Gruntfile.coffee', 'Gruntfile.coffee');
+    this.copy('_Dockerfile', 'Dockerfile');
+  },
+
+  app: function () {
+    this.mkdir('src');
+    this.copy('_index.coffee', 'src/index.coffee')
+  },
+
+  test: function () {
+    this.mkdir('test')
+    this.copy('_mocha.opts', 'test/mocha.opts');
+    this.mkdir('test/unit');
+    this.mkdir('test/perf');
   }
 });
 
