@@ -21,7 +21,17 @@ describe('node-cafe generator', function () {
     var expected = [
       // add files you expect to exist here.
       '.jshintrc',
-      '.editorconfig'
+      '.editorconfig',
+      '.gitignore',
+      'Gruntfile.coffee',
+      'package.json',
+      'Dockerfile',
+      'bower.json',
+      'README.md',
+      'test/mocha.opts',
+      'test/unit/index.coffee',
+      'test/perf/index.coffee',
+      'src/index.coffee'
     ];
 
     helpers.mockPrompt(this.app, {

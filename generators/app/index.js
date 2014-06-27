@@ -50,14 +50,16 @@ var NodeCafeGenerator = yeoman.generators.Base.extend({
 
   app: function () {
     this.mkdir('src');
-    this.copy('_index.coffee', 'src/index.coffee')
+    this.copy('_index.coffee', 'src/index.coffee');
   },
 
   test: function () {
-    this.mkdir('test')
+    this.mkdir('test');
     this.copy('_mocha.opts', 'test/mocha.opts');
     this.mkdir('test/unit');
+    this.copy('_unit_test_index.coffee', 'test/unit/index.coffee');
     this.mkdir('test/perf');
+    this.copy('_perf_test_index.coffee', 'test/perf/index.coffee');
   }
 });
 
