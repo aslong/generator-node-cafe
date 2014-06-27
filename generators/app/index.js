@@ -5,7 +5,7 @@ var yeoman = require('yeoman-generator');
 var yosay  = require('yosay');
 var chalk  = require('chalk');
 
-var CoffeeNodeGenerator = yeoman.generators.Base.extend({
+var NodeCafeGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../../package.json');
 
@@ -20,7 +20,7 @@ var CoffeeNodeGenerator = yeoman.generators.Base.extend({
     var done = this.async();
 
     // Have Yeoman greet the user.
-    this.log(yosay('Welcome to the marvelous CoffeeNode generator!'));
+    this.log(yosay('Welcome to the marvelous NodeCafe generator!'));
 
     var prompts = [{
       type: 'confirm',

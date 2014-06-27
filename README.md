@@ -1,4 +1,4 @@
-# generator-coffee-node [![Build Status](https://secure.travis-ci.org/aslong/generator-coffee-node.png?branch=master)](https://travis-ci.org/aslong/generator-coffee-node)
+# node-cafe [![Build Status](https://secure.travis-ci.org/aslong/generator-node-cafe.png?branch=master)](https://travis-ci.org/aslong/generator-node-cafe)
 
 > [Yeoman](http://yeoman.io) generator
 
@@ -23,16 +23,16 @@ $ npm install -g yo
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
-To install generator-coffee-node from npm, run:
+To install generator-node-cafe from npm, run:
 
 ```bash
-$ npm install -g generator-coffee-node
+$ npm install -g generator-node-cafe
 ```
 
 Finally, initiate the generator:
 
 ```bash
-$ yo coffee-node
+$ yo node-cafe
 ```
 
 ### Getting To Know Yeoman

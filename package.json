@@ -1,10 +1,10 @@
 {
-  "name": "generator-coffee-node",
+  "name": "generator-node-cafe",
   "version": "0.0.1",
-  "description": "Yeoman coffeescript based node.js app generator",
+  "description": "Yeoman node.js app generator with coffeescript, mocha, and grunt enabled",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "aslong/generator-coffee-node",
+  "repository": "aslong/generator-node-cafe",
   "author": {
     "name": "Andrew Long",
     "email": "",
