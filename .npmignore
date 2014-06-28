@@ -1,0 +1,12 @@
+src
+.travis.yml
+Dockerfile
+Gruntfile.coffee
+.jshintrc
+.gitignore
+.gitattributes
+.editorconfig
+.DS_Store
+npm-debug.log
+templates
+temp
