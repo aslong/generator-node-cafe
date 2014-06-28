@@ -1,6 +1,6 @@
-node_modules/
-temp/
+/node_modules/
+/temp/
 .DS_Store
 npm-debug.log
-generators/
-bin/
+/generators/
+/bin/
