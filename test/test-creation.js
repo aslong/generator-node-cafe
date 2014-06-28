@@ -1,25 +1,24 @@
 /*global describe, beforeEach, it */
 'use strict';
 var path = require('path');
+var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 
 describe('node-cafe generator', function () {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = helpers.createGenerator('node-cafe:app', [
-        '../../generators/app'
-      ]);
-      done();
-    }.bind(this));
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../generators/app'))
+    .inDir(path.join(__dirname, './temp'))
+    .withOptions({
+      'skip-install': true
+    })
+    .withPrompt({
+      'someOption': true
+    })
+    .onEnd(function () { done(); });
   });
 
-  it('creates expected files', function (done) {
-    var expected = [
-      // add files you expect to exist here.
+  it('creates the expected config files', function (done) {
+    assert.file([
       '.jshintrc',
       '.editorconfig',
       '.gitignore',
@@ -27,20 +26,30 @@ describe('node-cafe generator', function () {
       'package.json',
       'Dockerfile',
       'bower.json',
-      'README.md',
+    ])
+    done()
+  });
+
+  it('creates the expected test files', function (done) {
+    assert.file([
       'test/mocha.opts',
       'test/unit/index.coffee',
       'test/perf/index.coffee',
-      'src/index.coffee'
-    ];
+    ])
+    done()
+  });
 
-    helpers.mockPrompt(this.app, {
-      'someOption': true
-    });
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expected);
-      done();
-    });
+  it('creates the expected source files', function (done) {
+    assert.file([
+      'src/index.coffee'
+    ])
+    done()
+  });
+
+  it('creates expected project files', function (done) {
+    assert.file([
+      'README.md'
+    ]);
+    done()
   });
 });
