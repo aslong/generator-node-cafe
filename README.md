@@ -1,4 +1,4 @@
-# node-cafe [![Build Status](https://secure.travis-ci.org/aslong/generator-node-cafe.png?branch=master)](https://travis-ci.org/aslong/generator-node-cafe)
+# node-cafe [![Build Status](https://secure.travis-ci.org/aslong/generator-node-cafe.png?branch=master)](https://travis-ci.org/aslong/generator-node-cafe) [![Coverage Status](https://coveralls.io/repos/aslong/generator-node-cafe/badge.png)](https://coveralls.io/r/aslong/generator-node-cafe)
 
 > [Yeoman](http://yeoman.io) generator
 

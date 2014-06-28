@@ -20,8 +20,8 @@ module.exports = (grunt) ->
         cmd: "mkdir bin"
 
     clean:
-      build: 'generators/'
-      bin: 'bin/'
+      build: ['generators/', 'bin/']
+      release: ['generators/', 'bin/']
 
     coffee:
       compile:

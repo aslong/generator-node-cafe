@@ -1,7 +1,7 @@
 {
   "name": "generator-node-cafe",
   "version": "0.0.1",
-  "description": "Yeoman node.js app generator with coffeescript, mocha, and grunt enabled",
+  "description": "Best Yeoman node.js full stack app generator.",
   "license": "MIT",
   "main": "generators/app/index.js",
   "repository": "aslong/generator-node-cafe",
