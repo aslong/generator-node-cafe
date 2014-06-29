@@ -1,4 +1,6 @@
-# node-cafe [![Build Status](https://secure.travis-ci.org/aslong/generator-node-cafe.png?branch=master)](https://travis-ci.org/aslong/generator-node-cafe) [![Coverage Status](https://coveralls.io/repos/aslong/generator-node-cafe/badge.png)](https://coveralls.io/r/aslong/generator-node-cafe) [![npm module](https://badge.fury.io/js/generator-node-cafe.svg)](http://badge.fury.io/js/generator-node-cafe)  [![Node Dependencies](https://david-dm.org/aslong/generator-node-cafe.png)](https://david-dm.org/aslong/generator-node-cafe.png) [![Node devDependency Status](https://david-dm.org/aslong/generator-node-cafe.png)](https://david-dm.org/aslong/generator-node-cafe#info=devDependencies)
+# node-cafe
+
+[![Build Status](https://secure.travis-ci.org/aslong/generator-node-cafe.png?branch=master)](https://travis-ci.org/aslong/generator-node-cafe) [![Coverage Status](https://coveralls.io/repos/aslong/generator-node-cafe/badge.png)](https://coveralls.io/r/aslong/generator-node-cafe) [![npm module](https://badge.fury.io/js/generator-node-cafe.svg)](http://badge.fury.io/js/generator-node-cafe)  [![Node Dependencies](https://david-dm.org/aslong/generator-node-cafe.png)](https://david-dm.org/aslong/generator-node-cafe.png) [![Node devDependency Status](https://david-dm.org/aslong/generator-node-cafe.png)](https://david-dm.org/aslong/generator-node-cafe#info=devDependencies)
 
 > [Yeoman](http://yeoman.io) generator
 
