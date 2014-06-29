@@ -21,7 +21,8 @@
     "prepublish": "grunt prepublish"
   },
   "files": [
-    "generators"
+    "generators",
+    "generators/app/templates"
   ],
   "keywords": [
     "yeoman-generator"
