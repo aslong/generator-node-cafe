@@ -9,7 +9,7 @@ module.exports = (grunt) ->
         execOpts:
           maxBuffer: false
       test_coveralls:
-        cmd: "COVERALLS_GIT_COMMIT=HEAD JSCOV=1 mocha --reporter mocha-lcov-reporter test | ./node_modules/coveralls/bin/coveralls.js"
+        cmd: "JSCOV=1 NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
       test_coverage:
         cmd: "JSCOV=1 mocha --reporter html-cov > coverage.html && open coverage.html"
       npm_link:
