@@ -34,6 +34,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @copy('editorconfig', '.editorconfig')
       @copy('jshintrc', '.jshintrc')
       @copy('gitignore', '.gitignore')
+      @copy('travis.yml', '.travis.yml')
       @copy('_README.md', 'README.md')
 
       @copy('_package.json', 'package.json')

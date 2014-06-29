@@ -18,21 +18,22 @@ describe 'node-cafe generator', () ->
 
   it 'creates the expected config files', (done) ->
     assert.file([
-      '.jshintrc',
-      '.editorconfig',
-      '.gitignore',
-      'Gruntfile.coffee',
-      'package.json',
-      'Dockerfile',
-      'bower.json',
+      '.jshintrc'
+      '.editorconfig'
+      '.gitignore'
+      '.travis.yml'
+      'Gruntfile.coffee'
+      'package.json'
+      'Dockerfile'
+      'bower.json'
     ])
     done()
 
   it 'creates the expected test files', (done) ->
     assert.file([
-      'test/mocha.opts',
-      'test/unit/index.coffee',
-      'test/perf/index.coffee',
+      'test/mocha.opts'
+      'test/unit/index.coffee'
+      'test/perf/index.coffee'
     ])
     done()
 
