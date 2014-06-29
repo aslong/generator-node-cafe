@@ -1,6 +1,5 @@
 debug  = require('debug')("app:launch", "DEBUG")
 
-
 if process.env.APP_ENV isnt "test"
   console.log """
   #     #                                   #####
@@ -9,7 +8,7 @@ if process.env.APP_ENV isnt "test"
   #  #  # #    # #    # #####     #####    #       #    # #####  #####
   #   # # #    # #    # #                  #       ###### #      #
   #    ## #    # #    # #                  #     # #    # #      #
-  #     #  ####  #####  ######              #####  #    # #      ###### 
+  #     #  ####  #####  ######              #####  #    # #      ######
 
                   .......II7 ~I77.........
                  .. ....I77..~+.,II7  .
