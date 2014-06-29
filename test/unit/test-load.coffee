@@ -1,4 +1,4 @@
-#global describe, beforeEach, it
+### global describe, beforeEach, it ###
 'use strict'
 useCoverage = "/"
 useCoverage = "/bin/coverage-" if process.env.JSCOV
