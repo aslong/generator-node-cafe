@@ -4,6 +4,7 @@ MAINTAINER Andrew Long <aslong87@gmail.com>
 
 ADD . /usr/src/app
 WORKDIR /usr/src/app
+VOLUME ["/usr/src/app"]
 
 RUN npm install -g grunt-cli
 
