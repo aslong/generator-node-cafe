@@ -6,4 +6,4 @@ before_install:
   - npm install -g grunt-cli
   - if [ "$currentfolder" != 'generator-node-cafe' ]; then cd .. && eval "mv $currentfolder generator-node-cafe" && cd generator-node-cafe; fi
 after_script:
-  - grunt test:test_coveralls
+  - grunt test:coveralls
