@@ -21,6 +21,7 @@ describe 'node-cafe generator', () ->
     assert.file([
       '.jshintrc'
       '.editorconfig'
+      '.bowerrc'
       '.gitignore'
       '.travis.yml'
       'Gruntfile.coffee'
