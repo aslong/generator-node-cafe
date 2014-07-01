@@ -6,6 +6,17 @@ yeoman = require('yeoman-generator')
 yosay  = require('yosay')
 
 module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
+  constructor: () ->
+    yeoman.generators.Base.apply(this, arguments)
+
+    @argument('projectName', {
+      desc: "The name of the project to create."
+      required: false
+      optional: true
+      type: String
+      defaults: "MyProject"
+    })
+
   initializing:
     init: () =>
       @pkg = require('../../package.json')
@@ -17,15 +28,14 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       # Have Yeoman greet the user.
       @log(yosay('Welcome to the marvelous NodeCafe generator!'))
 
-      prompts = [{
-        type: 'confirm',
-        name: 'someOption',
-        message: 'Would you like to enable this option?',
-        default: true
-      }]
-
-      @prompt(prompts, (props) =>
-        @someOption = props.someOption
+      @prompt({
+        type: 'input',
+        name: 'name',
+        message: 'Please name your new node cafe project',
+        default: this.appname # Default to current folder name
+      }, (answers) =>
+        @log(answers.name)
+        @projectName = answers.name
         done()
       )
 

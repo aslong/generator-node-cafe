@@ -12,7 +12,7 @@ describe 'node-cafe generator', () ->
       'skip-install': true
     })
     .withPrompt({
-      'someOption': true
+      'name': 'myProject'
     })
     .onEnd(() -> done())
 
