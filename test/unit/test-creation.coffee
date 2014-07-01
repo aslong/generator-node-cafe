@@ -8,6 +8,7 @@ describe 'node-cafe generator', () ->
   before (done) ->
     helpers.run(path.join(__dirname, '../../generators/app'))
     .inDir(path.join(__dirname, '../../temp'))
+    .withArguments('hi')
     .withOptions({
       'skip-install': true
     })

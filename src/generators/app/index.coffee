@@ -9,7 +9,14 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
   constructor: () ->
     yeoman.generators.Base.apply(this, arguments)
 
-    @argument('projectName', {
+    this.option('--no-coffee', {
+      desc: "Don't enable this option. It will make you sleepy."
+      type: Boolean
+      defaults: false
+      banner: "Don't enable this option. It will make you sleepy."
+      hide: false
+    })
+    this.argument('name', {
       desc: "The name of the project to create."
       required: false
       optional: true
