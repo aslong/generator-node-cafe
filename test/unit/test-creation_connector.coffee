@@ -4,9 +4,9 @@ assert  = require('yeoman-generator').assert
 path    = require('path')
 helpers = require('yeoman-generator').test
 
-describe 'node-cafe generator', () ->
+describe 'node-cafe:connector generator', () ->
   before (done) ->
-    helpers.run(path.join(__dirname, '../../generators/app'))
+    helpers.run(path.join(__dirname, '../../generators/connector'))
     .inDir(path.join(__dirname, '../../temp'))
     .withArguments('hi')
     .withOptions({
@@ -17,37 +17,8 @@ describe 'node-cafe generator', () ->
     })
     .onEnd(() -> done())
 
-  it 'creates the expected config files', (done) ->
-    assert.file([
-      '.jshintrc'
-      '.editorconfig'
-      '.bowerrc'
-      '.gitignore'
-      '.travis.yml'
-      'Gruntfile.coffee'
-      'package.json'
-      'Dockerfile'
-      'bower.json'
-    ])
-    done()
-
-  it 'creates the expected test files', (done) ->
-    assert.file([
-      'test/mocha.opts'
-      'test/unit/index.coffee'
-      'test/perf/index.coffee'
-    ])
-    done()
-
   it 'creates the expected source files', (done) ->
     assert.file([
-      'src/index.coffee'
-      'src/static/css/main.css'
-    ])
-    done()
-
-  it 'creates expected project files', (done) ->
-    assert.file([
-      'README.md'
+      'src/connector/index.coffee'
     ])
     done()

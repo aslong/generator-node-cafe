@@ -4,9 +4,9 @@ assert  = require('yeoman-generator').assert
 path    = require('path')
 helpers = require('yeoman-generator').test
 
-describe 'node-cafe:connector generator', () ->
+describe 'node-cafe generator', () ->
   before (done) ->
-    helpers.run(path.join(__dirname, '../../generators/connector'))
+    helpers.run(path.join(__dirname, '../../generators/test'))
     .inDir(path.join(__dirname, '../../temp'))
     .withArguments('hi')
     .withOptions({
@@ -17,8 +17,5 @@ describe 'node-cafe:connector generator', () ->
     })
     .onEnd(() -> done())
 
-  it 'creates the expected source files', (done) ->
-    assert.file([
-      'src/connector/index.coffee'
-    ])
+  it 'passes', (done) ->
     done()
