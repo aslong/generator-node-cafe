@@ -11,6 +11,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     yeoman.generators.Base.apply(this, arguments)
     @addStatusToReadme = true
 
+    ###
     this.option('--no-coffee', {
       desc: "Don't enable this option. It will make you sleepy."
       type: Boolean
@@ -18,6 +19,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       banner: "Don't enable this option. It will make you sleepy."
       hide: false
     })
+    ###
     this.argument('name', {
       desc: "The name of the project to create."
       required: false
@@ -98,7 +100,6 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       finishedPrompting()
     )
 
-
   configuring:
     projectConfigFiles: () ->
       @config.save()
@@ -112,7 +113,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @template('_package.json', 'package.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
       @template('_bower.json', 'bower.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
       @template('_Gruntfile.coffee', 'Gruntfile.coffee', { 'projectEnvName': @projectEnvName, 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
-      @copy('_Dockerfile', 'Dockerfile')
+      @template('_Dockerfile', 'Dockerfile', { 'projectEnvName': @projectEnvName, 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
 
   #default:
 

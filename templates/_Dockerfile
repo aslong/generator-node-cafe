@@ -1,10 +1,10 @@
 FROM node:0.10.28
 
-MAINTAINER Andrew Long <aslong87@gmail.com>
+MAINTAINER <%= authorName %> <<%= authorEmail %>>
 
-ADD . /usr/src/app
-WORKDIR /usr/src/app
-VOLUME ["/usr/src/app"]
+ADD . /usr/src/<%= projectName %>
+WORKDIR /usr/src/<%= projectName %>
+VOLUME ["/usr/src/<%= projectName %>"]
 
 RUN npm install -g grunt-cli
 
