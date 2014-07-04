@@ -6,3 +6,4 @@ npm-debug.log
 /bin/
 /coverage/
 coverage.html
+.yo-rc.json

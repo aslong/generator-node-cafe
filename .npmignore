@@ -7,6 +7,7 @@ Gruntfile.coffee
 .gitattributes
 .editorconfig
 .DS_Store
+.yo-rc.json
 npm-debug.log
 templates
 temp
