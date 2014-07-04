@@ -15,7 +15,7 @@ module.exports = (grunt) ->
       npm_link:
         cmd: "sudo npm link && yo node-cafe"
       copy_templates:
-        cmd: "cp -r templates generators/app/templates"
+        cmd: "cp -r templates_app generators/app/templates && cp -r templates_connector generators/connector/templates"
       build_bin:
         cmd: "mkdir bin"
 

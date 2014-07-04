@@ -42,7 +42,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     finishedPrompting = @async()
 
     # Have Yeoman greet the user.
-    @log(yosay('Welcome to the marvelous NodeCafe generator!'))
+    @log(yosay('Welcome to NodeCafe!'))
 
     prompts = [{
       type: 'input',
@@ -72,15 +72,12 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     }]
 
     @prompt(prompts, (answers) =>
-      @log(answers.name)
       @projectName = answers.name.replace(new RegExp(" ", "g"), "_")
 
       @projectEnvName = @projectName.replace(new RegExp("-", "g"), "_").toUpperCase() + "_ENV"
 
-      @log(answers.gitAccount)
       @gitAccount = answers.gitAccount
 
-      @log(answers.projectDescription)
       @projectDescription = answers.projectDescription
 
       splitKeywords = answers.keywords.split(',')
@@ -88,12 +85,6 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       for i in [0...splitKeywords.length]
         splitKeyword = splitKeywords[i].trim()
         @keywords.push(splitKeyword) if splitKeyword.length > 0
-      @log(@keywords)
-
-      if answers.addCodeStatus
-        @log('codesStatus Enabled')
-      else
-        @log('codesStatus Disabled')
 
       @addStatusToReadme = answers.addCodeStatus
 
