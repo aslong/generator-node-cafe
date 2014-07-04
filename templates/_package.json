@@ -1,10 +1,10 @@
 {
   "name": "<%= projectName %>",
   "version": "0.0.1",
-  "description": "",
+  "description": "<%= projectDescription %>",
   "author": {
-    "name": "",
-    "email": "",
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>",
     "url": "https://github.com/<%= gitAccount %>/<%= projectName %>"
   },
   "main": "bin/src/index.js",

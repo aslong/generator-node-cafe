@@ -1,9 +1,10 @@
 'use strict';
-chalk  = require('chalk')
-path   = require('path')
-util   = require('util')
-yeoman = require('yeoman-generator')
-yosay  = require('yosay')
+chalk    = require('chalk')
+execSync = require('exec-sync')
+path     = require('path')
+util     = require('util')
+yeoman   = require('yeoman-generator')
+yosay    = require('yosay')
 
 module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
   constructor: () ->
@@ -25,49 +26,63 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       defaults: undefined
     })
 
-  initializing:
-    init: () =>
-      @pkg = require('../../package.json')
+    try
+      @authorEmail = execSync('git config --global --get user.email')
+      @authorName = execSync('git config --global --get user.name')
+    catch e
+      @authorEmail = ''
+      @authorName = ''
 
-  prompting:
-    askFor: () ->
-      finishedPrompting = @async()
+  initializing: () =>
+    @pkg = require('../../package.json')
 
-      # Have Yeoman greet the user.
-      @log(yosay('Welcome to the marvelous NodeCafe generator!'))
+  prompting: () ->
+    finishedPrompting = @async()
 
-      prompts = [{
-        type: 'input',
-        name: 'name',
-        message: 'Please name your new node cafe project',
-        default: @name || @appname # Default to current folder name
-      }, {
-        type: 'input',
-        name: 'gitAccount',
-        message: 'Enter the git account this repo will be under',
-        default: @gitAccount
-      }, {
-        type: 'confirm',
-        name: 'addCodeStatus',
-        message: 'Enable code status badges?',
-        default: true
-      }]
+    # Have Yeoman greet the user.
+    @log(yosay('Welcome to the marvelous NodeCafe generator!'))
 
-      @prompt(prompts, (answers) =>
-        @log(answers.name)
-        @projectName = answers.name
+    prompts = [{
+      type: 'input',
+      name: 'name',
+      message: 'Please name your new node cafe project',
+      default: @name || @appname # Default to current folder name
+    }, {
+      type: 'input',
+      name: 'gitAccount',
+      message: 'Enter the git account this repo will be under',
+      default: @gitAccount
+    }, {
+      type: 'input',
+      name: 'projectDescription',
+      message: 'Enter a project description',
+      default: ''
+    }, {
+      type: 'confirm',
+      name: 'addCodeStatus',
+      message: 'Enable code status badges?',
+      default: true
+    }]
 
-        @log(answers.gitAccount)
-        @gitAccount = answers.gitAccount
+    @prompt(prompts, (answers) =>
+      @log(answers.name)
+      @projectName = answers.name
 
-        if answers.addCodeStatus
-          @log('codesStatus Enabled')
-        else
-          @log('codesStatus Disabled')
+      @log(answers.gitAccount)
+      @gitAccount = answers.gitAccount
 
-        @addStatusToReadme = answers.addCodeStatus
-        finishedPrompting()
-      )
+      @log(answers.projectDescription)
+      @projectDescription = answers.projectDescription
+
+      if answers.addCodeStatus
+        @log('codesStatus Enabled')
+      else
+        @log('codesStatus Disabled')
+
+      @addStatusToReadme = answers.addCodeStatus
+
+      finishedPrompting()
+    )
 
 
   configuring:
@@ -80,7 +95,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @copy('travis.yml', '.travis.yml')
       @template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
 
-      @template('_package.json', 'package.json', { 'projectName': @projectName, 'gitAccount': @gitAccount })
+      @template('_package.json', 'package.json', { 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
       @copy('_bower.json', 'bower.json')
       @copy('_Gruntfile.coffee', 'Gruntfile.coffee')
       @copy('_Dockerfile', 'Dockerfile')
