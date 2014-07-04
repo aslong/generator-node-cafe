@@ -58,6 +58,11 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       message: 'Enter a project description',
       default: ''
     }, {
+      type: 'input',
+      name: 'keywords',
+      message: 'Enter keywords for project',
+      default: ''
+    }, {
       type: 'confirm',
       name: 'addCodeStatus',
       message: 'Enable code status badges?',
@@ -73,6 +78,11 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
       @log(answers.projectDescription)
       @projectDescription = answers.projectDescription
+
+      @keywords = answers.keywords.split(',')
+      for i in [0...@keywords.length]
+        @keywords[i] = @keywords[i].trim()
+      @log(@keywords)
 
       if answers.addCodeStatus
         @log('codesStatus Enabled')
@@ -95,7 +105,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @copy('travis.yml', '.travis.yml')
       @template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
 
-      @template('_package.json', 'package.json', { 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
+      @template('_package.json', 'package.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
       @copy('_bower.json', 'bower.json')
       @copy('_Gruntfile.coffee', 'Gruntfile.coffee')
       @copy('_Dockerfile', 'Dockerfile')
