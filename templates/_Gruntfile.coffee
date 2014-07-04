@@ -29,6 +29,8 @@ module.exports = (grunt) ->
         cmd: "DEBUG=* APP_ENV=production node ./bin/src/index.js"
       build_bin:
         cmd: "mkdir bin"
+      cp_static:
+        cmd: "cp -rf src/static/ bin/src/static/"
 
     clean:
       build: ['bin/']
@@ -79,7 +81,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-mocha-cli')
 
   grunt.registerTask('compile', ['clean', 'bgShell:build_bin', 'coffee:compile'])
-  grunt.registerTask('build', ['compile'])
+  grunt.registerTask('build', ['compile', 'bgShell:cp_static'])
 
   grunt.registerTask('test', ['build', 'mochacli'])
   grunt.registerTask('test:unit', ['build', 'mochacli:unit'])
@@ -99,6 +101,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask('init', ['docker:init'])
   grunt.registerTask('run', ['docker:run'])
-  
+
   grunt.registerTask('prepublish', ['build'])
   grunt.registerTask('default', ['start'])

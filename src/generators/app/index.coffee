@@ -79,9 +79,11 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @log(answers.projectDescription)
       @projectDescription = answers.projectDescription
 
-      @keywords = answers.keywords.split(',')
-      for i in [0...@keywords.length]
-        @keywords[i] = @keywords[i].trim()
+      splitKeywords = answers.keywords.split(',')
+      @keywords = []
+      for i in [0...splitKeywords.length]
+        splitKeyword = splitKeywords[i].trim()
+        @keywords.push(splitKeyword) if splitKeyword.length > 0
       @log(@keywords)
 
       if answers.addCodeStatus
@@ -106,7 +108,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
 
       @template('_package.json', 'package.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
-      @copy('_bower.json', 'bower.json')
+      @template('_bower.json', 'bower.json', { 'projectName': @projectName })
       @copy('_Gruntfile.coffee', 'Gruntfile.coffee')
       @copy('_Dockerfile', 'Dockerfile')
 
@@ -116,6 +118,8 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     app: () ->
       @mkdir('src')
       @copy('_index.coffee', 'src/index.coffee')
+      @mkdir('src/static/css')
+      @copy('_main.css', 'src/static/css/main.css')
 
     test: () ->
       @mkdir('test')

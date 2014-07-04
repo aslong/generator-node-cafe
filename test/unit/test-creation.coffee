@@ -42,6 +42,7 @@ describe 'node-cafe generator', () ->
   it 'creates the expected source files', (done) ->
     assert.file([
       'src/index.coffee'
+      'src/static/css/main.css'
     ])
     done()
 
