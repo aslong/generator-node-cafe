@@ -3,9 +3,14 @@
 useCoverage = "/"
 useCoverage = "/bin/coverage-" if process.env.JSCOV
 
-app    = require("../..#{useCoverage}generators/app")
-assert = require('assert')
+app       = require("../..#{useCoverage}generators/app")
+assert    = require('assert')
+connector = require("../..#{useCoverage}generators/connector")
 
 describe 'node-cafe generator', () ->
   it 'can be imported without blowing up', () ->
     assert(app?)
+
+describe 'node-cafe:connector generator', () ->
+  it 'can be imported without blowing up', () ->
+    assert(connector?)
