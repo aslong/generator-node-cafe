@@ -71,7 +71,9 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
     @prompt(prompts, (answers) =>
       @log(answers.name)
-      @projectName = answers.name
+      @projectName = answers.name.replace(new RegExp(" ", "g"), "_")
+
+      @projectEnvName = @projectName.replace(new RegExp("-", "g"), "_").toUpperCase() + "_ENV"
 
       @log(answers.gitAccount)
       @gitAccount = answers.gitAccount
@@ -109,7 +111,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
       @template('_package.json', 'package.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
       @template('_bower.json', 'bower.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
-      @copy('_Gruntfile.coffee', 'Gruntfile.coffee')
+      @template('_Gruntfile.coffee', 'Gruntfile.coffee', { 'projectEnvName': @projectEnvName, 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
       @copy('_Dockerfile', 'Dockerfile')
 
   #default:
