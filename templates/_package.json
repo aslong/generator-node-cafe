@@ -1,14 +1,14 @@
 {
-  "name": "",
+  "name": "<%= projectName %>",
   "version": "0.0.1",
   "description": "",
   "author": {
     "name": "",
     "email": "",
-    "url": "https://github.com/"
+    "url": "https://github.com/<%= gitAccount %>/<%= projectName %>"
   },
   "main": "bin/src/index.js",
-  "repository": "",
+  "repository": "<%= gitAccount %>/<%= projectName %>",
   "scripts": {
     "prepublish": "grunt prepublish",
     "test": "grunt test",

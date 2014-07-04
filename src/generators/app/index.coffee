@@ -8,6 +8,7 @@ yosay  = require('yosay')
 module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
   constructor: () ->
     yeoman.generators.Base.apply(this, arguments)
+    @addStatusToReadme = true
 
     this.option('--no-coffee', {
       desc: "Don't enable this option. It will make you sleepy."
@@ -21,7 +22,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       required: false
       optional: true
       type: String
-      defaults: "MyProject"
+      defaults: undefined
     })
 
   initializing:
@@ -30,32 +31,56 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
   prompting:
     askFor: () ->
-      done = @async()
+      finishedPrompting = @async()
 
       # Have Yeoman greet the user.
       @log(yosay('Welcome to the marvelous NodeCafe generator!'))
 
-      @prompt({
+      prompts = [{
         type: 'input',
         name: 'name',
         message: 'Please name your new node cafe project',
-        default: this.appname # Default to current folder name
-      }, (answers) =>
+        default: @name || @appname # Default to current folder name
+      }, {
+        type: 'input',
+        name: 'gitAccount',
+        message: 'Enter the git account this repo will be under',
+        default: @gitAccount
+      }, {
+        type: 'confirm',
+        name: 'addCodeStatus',
+        message: 'Enable code status badges?',
+        default: true
+      }]
+
+      @prompt(prompts, (answers) =>
         @log(answers.name)
         @projectName = answers.name
-        done()
+
+        @log(answers.gitAccount)
+        @gitAccount = answers.gitAccount
+
+        if answers.addCodeStatus
+          @log('codesStatus Enabled')
+        else
+          @log('codesStatus Disabled')
+
+        @addStatusToReadme = answers.addCodeStatus
+        finishedPrompting()
       )
+
 
   configuring:
     projectConfigFiles: () ->
+      @config.save()
       @copy('editorconfig', '.editorconfig')
       @copy('jshintrc', '.jshintrc')
       @copy('gitignore', '.gitignore')
       @copy('bowerrc', '.bowerrc')
       @copy('travis.yml', '.travis.yml')
-      @copy('_README.md', 'README.md')
+      @template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
 
-      @copy('_package.json', 'package.json')
+      @template('_package.json', 'package.json', { 'projectName': @projectName, 'gitAccount': @gitAccount })
       @copy('_bower.json', 'bower.json')
       @copy('_Gruntfile.coffee', 'Gruntfile.coffee')
       @copy('_Dockerfile', 'Dockerfile')
