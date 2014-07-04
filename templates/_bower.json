@@ -5,6 +5,9 @@
   "ignore": [
 
   ],
+  "keywords": [<% for (var i = 0; i < keywords.length; i++) { %>
+    "<%= keywords[i] %>"<% if (i !== keywords.length - 1) { %>,<% } %><% } %>
+  ],
   "dependencies": {},
   "devDependencies": {}
 }

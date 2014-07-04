@@ -108,7 +108,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
 
       @template('_package.json', 'package.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
-      @template('_bower.json', 'bower.json', { 'projectName': @projectName })
+      @template('_bower.json', 'bower.json', { 'keywords': @keywords, 'projectName': @projectName })
       @copy('_Gruntfile.coffee', 'Gruntfile.coffee')
       @copy('_Dockerfile', 'Dockerfile')
 
