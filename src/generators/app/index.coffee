@@ -97,6 +97,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @copy('editorconfig', '.editorconfig')
       @copy('jshintrc', '.jshintrc')
       @copy('gitignore', '.gitignore')
+      @copy('dockerignore', '.dockerignore')
       @copy('bowerrc', '.bowerrc')
       @copy('travis.yml', '.travis.yml')
       @template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
