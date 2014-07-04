@@ -6,16 +6,17 @@ helpers = require('yeoman-generator').test
 
 describe 'node-cafe:connector generator', () ->
   before (done) ->
-    helpers.run(path.join(__dirname, '../../generators/connector'))
-    .inDir(path.join(__dirname, '../../temp'))
-    .withArguments('hi')
-    .withOptions({
-      'skip-install': true
-    })
-    .withPrompt({
-      'name': 'myProject'
-    })
-    .onEnd(() -> done())
+    helpers.testDirectory(path.join(__dirname, '../../bin/test/temp'), () ->
+      helpers.run(path.join(__dirname, '../../generators/connector'))
+      .withArguments('hi')
+      .withOptions({
+        'skip-install': true
+      })
+      .withPrompt({
+        'name': 'myProject'
+      })
+      .on('end', () -> done())
+    )
 
   it 'creates the expected source files', (done) ->
     assert.file([
