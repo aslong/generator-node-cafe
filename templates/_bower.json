@@ -1,9 +1,19 @@
 {
   "name": "<%= projectName %>",
   "version": "0.0.1",
+  "description": "<%= projectDescription %>",
   "main": "src/static/css/main.css",
+  "license": "MIT",
+  "author": {
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>",
+    "url": "https://github.com/<%= gitAccount %>/<%= projectName %>"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/<%= gitAccount %>/<%= projectName %>.git"
+  },
   "ignore": [
-
   ],
   "keywords": [<% for (var i = 0; i < keywords.length; i++) { %>
     "<%= keywords[i] %>"<% if (i !== keywords.length - 1) { %>,<% } %><% } %>
