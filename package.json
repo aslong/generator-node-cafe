@@ -1,13 +1,13 @@
 {
   "name": "generator-node-cafe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Best Yeoman node.js full stack app generator.",
   "license": "MIT",
   "main": "generators/app/index.js",
   "repository": "aslong/generator-node-cafe",
   "author": {
     "name": "Andrew Long",
-    "email": "",
+    "email": "aslong87@gmail.com",
     "url": "https://github.com/aslong"
   },
   "directories": {
