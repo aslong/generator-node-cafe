@@ -93,11 +93,12 @@ module.exports = (grunt) ->
   grunt.registerTask('start:local', ['build', 'bgShell:start_service_local'])
   grunt.registerTask('start:production', ['build', 'bgShell:start_service_production'])
 
+  grunt.registerTask('docker', ['docker:upgrade_boot2docker', 'docker:init', 'docker:run'])
   grunt.registerTask('docker:upgrade_boot2docker', ['bgShell:upgrade_boot2docker'])
   grunt.registerTask('docker:add_shared_folder', ['bgShell:add_shared_folder'])
-  grunt.registerTask('docker:remove_shared_folder', ['bgShell:remove_shared_folder'])
   grunt.registerTask('docker:init', ['docker:add_shared_folder', 'bgShell:build_box'])
   grunt.registerTask('docker:run', ['bgShell:start_box'])
+  grunt.registerTask('docker:remove_shared_folder', ['bgShell:remove_shared_folder'])
 
   grunt.registerTask('init', ['docker:init'])
   grunt.registerTask('run', ['docker:run'])
