@@ -25,10 +25,9 @@
     "<%= keywords[i] %>"<% if (i !== keywords.length - 1) { %>,<% } %><% } %>
   ],
   "dependencies": {
-    "async"              : "0.2.5",
-    "debug"              : "0.7.2",
-    "underscore"         : "1.6.0",
-    "ws"                 : "0.4.31"
+    "async"              : "~0.9.0",
+    "debug"              : "~1.0.0",
+    "underscore"         : "~1.6.0",
   },
   "devDependencies": {
     "coffee-script"        : "~1.7.0",
