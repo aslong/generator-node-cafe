@@ -13,7 +13,7 @@ describe 'node-cafe test generator', () ->
       cafeHelpers.runDefaultGenerator () ->
         cafeHelpers.runGenerator('test', 'model Account', {}, {}, () ->
           assert.file([
-            'test/unit/model/Account.coffee'
+            'test/unit/models/Account.coffee'
           ])
           done()
         )
