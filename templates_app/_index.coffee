@@ -1,6 +1,6 @@
-debug  = require('debug')("app:launch", "DEBUG")
+debug  = require('debug')("<%= projectName %>:launch", "DEBUG")
 
-if process.env.APP_ENV isnt "test"
+if process.env.<%= projectEnvName %> isnt "test"
   console.log """
   #     #                                   #####
   ##    #  ####  #####  ######             #     #   ##   ###### ######

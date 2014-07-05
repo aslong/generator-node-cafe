@@ -9,7 +9,7 @@ module.exports = (grunt) ->
         execOpts:
           maxBuffer: false
       test_coveralls:
-        cmd: "JSCOV=1 NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        cmd: "JSCOV=1 NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
       test_coverage:
         cmd: "JSCOV=1 mocha --reporter html-cov > coverage.html && open coverage.html"
       npm_link:
@@ -22,7 +22,7 @@ module.exports = (grunt) ->
         cmd: "mkdir bin && cp package.json bin/package.json"
 
     clean:
-      build: ['generators/', 'bin/', 'coverage/']
+      build: ['generators/', 'bin/', 'coverage/', 'coverage.html']
 
     coffee:
       compile:

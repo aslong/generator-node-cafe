@@ -5,6 +5,7 @@ path     = require('path')
 util     = require('util')
 yeoman   = require('yeoman-generator')
 yosay    = require('yosay')
+_        = require('underscore')
 
 module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
   constructor: () ->
@@ -84,7 +85,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
   configuring:
     projectConfigFiles: () ->
-      config =
+      @currentConfig =
         projectEnvName: @projectEnvName
         keywords: @keywords
         projectDescription: @projectDescription,
@@ -94,7 +95,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
         gitAccount: @gitAccount
         addStatusToReadme: @addStatusToReadme
 
-      @config.set(config)
+      @config.set(@currentConfig)
       @config.save()
 
       @copy('editorconfig', '.editorconfig')
@@ -103,29 +104,35 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @copy('dockerignore', '.dockerignore')
       @copy('bowerrc', '.bowerrc')
       @copy('travis.yml', '.travis.yml')
-      @template('_README.md', 'README.md', config)
+      @template('_README.md', 'README.md', @currentConfig)
 
-      @template('_package.json', 'package.json', config)
-      @template('_bower.json', 'bower.json', config)
-      @template('_Gruntfile.coffee', 'Gruntfile.coffee', config)
-      @template('_Dockerfile', 'Dockerfile', config)
+      @template('_package.json', 'package.json', @currentConfig)
+      @template('_bower.json', 'bower.json', @currentConfig)
+      @template('_Gruntfile.coffee', 'Gruntfile.coffee', @currentConfig)
+      @template('_Dockerfile', 'Dockerfile', @currentConfig)
 
   #default:
 
   writing:
     app: () ->
       @mkdir('src')
-      @copy('_index.coffee', 'src/index.coffee')
+      @template('_index.coffee', 'src/index.coffee', @currentConfig)
+
+    staticApp: () ->
       @mkdir('src/static/css')
       @copy('_main.css', 'src/static/css/main.css')
 
     test: () ->
       @mkdir('test')
       @copy('_mocha.opts', 'test/mocha.opts')
+      @mkdir('test/helpers')
+      @copy('_test_helpers_index.coffee', 'test/helpers/index.coffee')
       @mkdir('test/unit')
-      @copy('_unit_test_index.coffee', 'test/unit/index.coffee')
+      @template('_test_index.coffee', 'test/unit/index.coffee', _.extend(@currentConfig, { testType: 'unit' }))
       @mkdir('test/perf')
-      @copy('_perf_test_index.coffee', 'test/perf/index.coffee')
+      @template('_test_index.coffee', 'test/perf/index.coffee', _.extend(@currentConfig, { testType: 'perf' }))
+      @mkdir('test/integration')
+      @template('_test_index.coffee', 'test/integration/index.coffee', _.extend(@currentConfig, { testType: 'integration' }))
 
   install:
     installDependencies: () ->

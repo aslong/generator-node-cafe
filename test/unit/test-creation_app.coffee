@@ -30,8 +30,10 @@ describe 'node-cafe generator', () ->
   it 'creates the expected test files', (done) ->
     assert.file([
       'test/mocha.opts'
+      'test/helpers/index.coffee'
       'test/perf/index.coffee'
       'test/unit/index.coffee'
+      'test/integration/index.coffee'
     ])
     done()
 

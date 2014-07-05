@@ -20,9 +20,9 @@ module.exports = (grunt) ->
       start_box:
         cmd: "docker run -v $PWD:/usr/src/<%= projectName %> -t -i '<%= projectName %>' /bin/bash"
       test_coveralls:
-        cmd: "JSCOV=1 <%= projectEnvName %>=test ./node_modules/bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        cmd: "JSCOV=1 <%= projectEnvName %>=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
       test_coverage:
-        cmd: "JSCOV=1 <%= projectEnvName %>=test ./node_modules/bin/_mocha --reporter html-cov test > coverage.html && open coverage.html"
+        cmd: "JSCOV=1 <%= projectEnvName %>=test ./node_modules/mocha/bin/_mocha --reporter html-cov test > coverage.html && open coverage.html"
       start_service_local:
         cmd: "DEBUG=* <%= projectEnvName %>=local node ./bin/src/index.js"
       start_service_production:
@@ -33,8 +33,8 @@ module.exports = (grunt) ->
         cmd: "cp -rf src/static/ bin/src/static/"
 
     clean:
-      build: ['bin/']
-      release: ['bin/']
+      build: ['bin/', 'coverage/', 'coverage.html']
+      release: ['bin/', 'coverage/', 'coverage.html']
 
     coffee:
       compile:
@@ -61,10 +61,11 @@ module.exports = (grunt) ->
           <%= projectEnvName %>: 'test'
       unit: ['test/unit/**/*.coffee']
       perf: ['test/perf/**/*.coffee']
+      integration: ['test/integration/**/*.coffee']
 
     watch:
       tdd:
-        files: ['test/unit/**/*.coffee', 'test/perf/**/*.coffee', 'src/**/*.coffee']
+        files: ['test/unit/**/*.coffee', 'test/perf/**/*.coffee', 'test/integration/**/*.coffee', 'src/**/*.coffee']
         tasks: 'test'
       unit:
         files: ['test/unit/**/*.coffee', 'src/**/*.coffee']
@@ -72,6 +73,9 @@ module.exports = (grunt) ->
       perf:
         files: ['test/perf/**/*.coffee', 'src/**/*.coffee']
         tasks: 'test:perf'
+      integration:
+        files: ['test/integration/**/*.coffee', 'src/**/*.coffee']
+        tasks: 'test:integration'
 
   grunt.loadNpmTasks('grunt-bg-shell')
   grunt.loadNpmTasks('grunt-contrib-clean')
@@ -86,6 +90,7 @@ module.exports = (grunt) ->
   grunt.registerTask('test', ['build', 'mochacli'])
   grunt.registerTask('test:unit', ['build', 'mochacli:unit'])
   grunt.registerTask('test:perf', ['build', 'mochacli:perf'])
+  grunt.registerTask('test:integration', ['build', 'mochacli:integration'])
   grunt.registerTask('test:coveralls', ['build', 'jscoverage', 'bgShell:test_coveralls'])
   grunt.registerTask('test:coverage', ['build', 'jscoverage', 'bgShell:test_coverage'])
 

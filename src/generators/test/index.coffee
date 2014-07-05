@@ -52,6 +52,12 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
   initializing: () ->
     @pkg = require('../../package.json')
+    @componentTestingPath = @componentTesting
+    if @componentTesting.charAt(@componentTesting.length - 1) is 's'
+      @componentTesting = @componentTesting.substr(0, @componentTesting.length - 1)
+    else
+      @componentTestingPath = "#{@componentTestingPath}s"
+
     @testTypes = []
 
     if not @options['unit']?
@@ -73,6 +79,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @testConfig = _.extend(@testConfig, {
         name: @name
         componentTesting: @componentTesting
+        componentTestingPath: @componentTestingPath
       })
 
   #default:
@@ -81,7 +88,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     connector: () ->
       for testType in @testTypes
         testConfig = _.extend(@testConfig, { testType: testType })
-        @template('_test.coffee', "test/#{testConfig.testType}/#{@componentTesting}/#{@name}.coffee", testConfig)
+        @template('_test.coffee', "test/#{testConfig.testType}/#{@componentTestingPath}/#{@name}.coffee", testConfig)
 
   #install:
     #installDependencies: () ->
