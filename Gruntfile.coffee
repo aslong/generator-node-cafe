@@ -16,8 +16,10 @@ module.exports = (grunt) ->
         cmd: "sudo npm link && yo node-cafe"
       copy_templates:
         cmd: "cp -r templates_app generators/app/templates && cp -r templates_connector generators/connector/templates && cp -r templates_test generators/test/templates"
+      copy_templates_coverage:
+        cmd: "cp -r templates_app bin/coverage-generators/app/templates && cp -r templates_connector bin/coverage-generators/connector/templates && cp -r templates_test bin/coverage-generators/test/templates"
       build_bin:
-        cmd: "mkdir bin"
+        cmd: "mkdir bin && cp package.json bin/package.json"
 
     clean:
       build: ['generators/', 'bin/', 'coverage/']
@@ -66,12 +68,13 @@ module.exports = (grunt) ->
 
   grunt.registerTask('compile', ['clean', 'bgShell:build_bin', 'coffee:compile'])
   grunt.registerTask('build', ['compile', 'bgShell:copy_templates'])
+  grunt.registerTask('buildCoverage', ['build', 'jscoverage', 'bgShell:copy_templates_coverage'])
 
   grunt.registerTask('test', ['build', 'mochacli'])
   grunt.registerTask('test:unit', ['build', 'mochacli:unit'])
   grunt.registerTask('test:perf', ['build', 'mochacli:perf'])
-  grunt.registerTask('test:coveralls', ['build', 'jscoverage', 'bgShell:test_coveralls'])
-  grunt.registerTask('test:coverage', ['build', 'jscoverage', 'bgShell:test_coverage'])
+  grunt.registerTask('test:coveralls', ['buildCoverage', 'bgShell:test_coveralls'])
+  grunt.registerTask('test:coverage', ['buildCoverage', 'bgShell:test_coverage'])
 
   grunt.registerTask('default', ['build', 'bgShell:npm_link'])
   grunt.registerTask('prepublish', ['build'])

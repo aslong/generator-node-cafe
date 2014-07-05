@@ -1,12 +1,11 @@
 ### global describe, beforeEach, it ###
 'use strict'
-useCoverage = "/"
-useCoverage = "/bin/coverage-" if process.env.JSCOV
+{ requireCoverage } = require('../helpers')
 
-app       = require("../..#{useCoverage}generators/app")
 assert    = require('assert')
-connector = require("../..#{useCoverage}generators/connector")
-test      = require("../..#{useCoverage}generators/test")
+app       = requireCoverage("app")
+connector = requireCoverage("connector")
+test      = requireCoverage("test")
 
 describe 'node-cafe generator', () ->
   it 'can be imported without blowing up', () ->

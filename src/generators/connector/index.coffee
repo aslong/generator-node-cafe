@@ -37,7 +37,6 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
   configuring:
     projectConfigFiles: () ->
       @config.save()
-      #@template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
 
   #default:
 

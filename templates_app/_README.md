@@ -6,3 +6,6 @@
 [![npm module](https://badge.fury.io/js/<%= projectName %>.svg)](http://badge.fury.io/js/<%= projectName %>)
 [![Node Dependencies](https://david-dm.org/<%= gitAccount %>/<%= projectName %>.png)](https://david-dm.org/<%= gitAccount %>/<%= projectName %>)
 [![Node devDependency Status](https://david-dm.org/<%= gitAccount %>/<%= projectName %>/dev-status.png)](https://david-dm.org/<%= gitAccount %>/<%= projectName %>#info=devDependencies)<% } %>
+
+
+<%= projectDescription %>

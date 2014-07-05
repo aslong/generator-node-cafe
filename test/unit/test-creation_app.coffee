@@ -1,5 +1,7 @@
 ### global describe, beforeEach, it ###
 'use strict'
+{ runDefaultGenerator } = require('../helpers')
+
 assert  = require('yeoman-generator').assert
 path    = require('path')
 helpers = require('yeoman-generator').test
@@ -7,15 +9,7 @@ helpers = require('yeoman-generator').test
 describe 'node-cafe generator', () ->
   before (done) ->
     helpers.testDirectory(path.join(__dirname, '../../bin/test/temp'), () ->
-      helpers.run(path.join(__dirname, '../../generators/app'))
-      .withArguments('hi')
-      .withOptions({
-        'skip-install': true
-      })
-      .withPrompt({
-        'name': 'myProject'
-      })
-      .on('end', () -> done())
+      runDefaultGenerator(done)
     )
 
   it 'creates the expected config files', (done) ->

@@ -11,15 +11,6 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     yeoman.generators.Base.apply(this, arguments)
     @addStatusToReadme = true
 
-    ###
-    this.option('--no-coffee', {
-      desc: "Don't enable this option. It will make you sleepy."
-      type: Boolean
-      defaults: false
-      banner: "Don't enable this option. It will make you sleepy."
-      hide: false
-    })
-    ###
     this.argument('name', {
       desc: "The name of the project to create."
       required: false
@@ -36,7 +27,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       @authorName = ''
 
   initializing: () =>
-    @pkg = require('../../package.json')
+    @pkg = require("../../package.json")
 
   prompting: () ->
     finishedPrompting = @async()
@@ -93,19 +84,31 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
   configuring:
     projectConfigFiles: () ->
+      config =
+        projectEnvName: @projectEnvName
+        keywords: @keywords
+        projectDescription: @projectDescription,
+        projectName: @projectName
+        authorEmail: @authorEmail
+        authorName: @authorName
+        gitAccount: @gitAccount
+        addStatusToReadme: @addStatusToReadme
+
+      @config.set(config)
       @config.save()
+
       @copy('editorconfig', '.editorconfig')
       @copy('jshintrc', '.jshintrc')
       @copy('gitignore', '.gitignore')
       @copy('dockerignore', '.dockerignore')
       @copy('bowerrc', '.bowerrc')
       @copy('travis.yml', '.travis.yml')
-      @template('_README.md', 'README.md', { 'projectName': @projectName, 'gitAccount': @gitAccount, 'addStatusToReadme': @addStatusToReadme })
+      @template('_README.md', 'README.md', config)
 
-      @template('_package.json', 'package.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
-      @template('_bower.json', 'bower.json', { 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
-      @template('_Gruntfile.coffee', 'Gruntfile.coffee', { 'projectEnvName': @projectEnvName, 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
-      @template('_Dockerfile', 'Dockerfile', { 'projectEnvName': @projectEnvName, 'keywords': @keywords, 'projectDescription': @projectDescription,  'projectName': @projectName, 'authorEmail': @authorEmail, 'authorName': @authorName, 'gitAccount': @gitAccount })
+      @template('_package.json', 'package.json', config)
+      @template('_bower.json', 'bower.json', config)
+      @template('_Gruntfile.coffee', 'Gruntfile.coffee', config)
+      @template('_Dockerfile', 'Dockerfile', config)
 
   #default:
 
