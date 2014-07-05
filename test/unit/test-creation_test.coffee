@@ -59,3 +59,16 @@ describe 'node-cafe test generator', () ->
           done()
         )
     );
+
+  it 'creates all tests for a model when the test type is plural', (done) ->
+    helpers.testDirectory(path.join(__dirname, '../../bin/test/temp'), () ->
+      cafeHelpers.runDefaultGenerator () ->
+        cafeHelpers.runGenerator('test', 'models Account', { 'perf': true, 'integration': true }, {}, () ->
+          assert.file([
+            'test/integration/models/Account.coffee'
+            'test/perf/models/Account.coffee'
+            'test/unit/models/Account.coffee'
+          ])
+          done()
+        )
+    );

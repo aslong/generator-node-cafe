@@ -25,4 +25,5 @@ module.exports =
       'skip-install': true
     }, {
       'name': 'myProject'
+      'keywords': 'project, my, test'
     }, cb)
