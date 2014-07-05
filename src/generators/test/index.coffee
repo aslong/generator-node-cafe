@@ -55,7 +55,7 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     @componentTestingPath = @componentTesting
     if @componentTesting.charAt(@componentTesting.length - 1) is 's'
       @componentTesting = @componentTesting.substr(0, @componentTesting.length - 1)
-    else
+    else if not (@componentTesting in ['connector'])
       @componentTestingPath = "#{@componentTestingPath}s"
 
     @testTypes = []
