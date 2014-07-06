@@ -15,9 +15,9 @@ module.exports = (grunt) ->
       npm_link:
         cmd: "sudo npm link"
       copy_templates:
-        cmd: "cp -r templates_app generators/app/templates && cp -r templates_connector generators/connector/templates && cp -r templates_test generators/test/templates"
+        cmd: "cp -r templates/templates_app generators/app/templates && cp -r templates/templates_connector generators/connector/templates && cp -r templates/templates_test generators/test/templates"
       copy_templates_coverage:
-        cmd: "cp -r templates_app bin/coverage-generators/app/templates && cp -r templates_connector bin/coverage-generators/connector/templates && cp -r templates_test bin/coverage-generators/test/templates"
+        cmd: "cp -r templates/templates_app bin/coverage-generators/app/templates && cp -r templates/templates_connector bin/coverage-generators/connector/templates && cp -r templates/templates_test bin/coverage-generators/test/templates"
       build_bin:
         cmd: "mkdir bin && cp package.json bin/package.json"
 
