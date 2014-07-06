@@ -9,9 +9,13 @@ module.exports = (grunt) ->
         execOpts:
           maxBuffer: false
       test_coveralls:
-        cmd: "mkdir ./coverage && JSCOV=1 ./node_modules/mocha/bin/_mocha -R mocha-lcov-reporter > ./coverage/lcov.info && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        cmd: "JSCOV=1 ./node_modules/mocha/bin/_mocha -R mocha-lcov-reporter > ./coverage/lcov.info"
+      send_coveralls_coverage:
+        cmd: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
       test_coverage:
-        cmd: "mkdir ./coverage && JSCOV=1 ./node_modules/mocha/bin/_mocha --reporter html-cov > ./coverage/coverage.html && open ./coverage/coverage.html"
+        cmd: "JSCOV=1 ./node_modules/mocha/bin/_mocha --reporter html-cov > ./coverage/coverage.html"
+      open_coverage:
+        cmd: "open ./coverage/coverage.html"
       npm_link:
         cmd: "sudo npm link"
       copy_templates:
@@ -20,6 +24,8 @@ module.exports = (grunt) ->
         cmd: "cp -r templates/templates_app bin/coverage-generators/app/templates && cp -r templates/templates_connector bin/coverage-generators/connector/templates && cp -r templates/templates_test bin/coverage-generators/test/templates && cp -r templates/templates_model bin/coverage-generators/model/templates"
       build_bin:
         cmd: "mkdir -p bin && cp package.json bin/package.json"
+      build_coverage:
+        cmd: "mkdir -p ./coverage"
 
     clean:
       build: ['generators/', 'bin/', 'coverage/']
@@ -75,13 +81,13 @@ module.exports = (grunt) ->
 
   grunt.registerTask('compile', ['clean', 'bgShell:build_bin', 'coffee:compile'])
   grunt.registerTask('build', ['compile', 'bgShell:copy_templates'])
-  grunt.registerTask('buildCoverage', ['build', 'jscoverage', 'bgShell:copy_templates_coverage'])
+  grunt.registerTask('buildCoverage', ['build', 'jscoverage', 'bgShell:build_coverage', 'bgShell:copy_templates_coverage'])
 
   grunt.registerTask('test', ['build', 'mochacli'])
   grunt.registerTask('test:unit', ['build', 'mochacli:unit'])
   grunt.registerTask('test:perf', ['build', 'mochacli:perf'])
-  grunt.registerTask('test:coveralls', ['buildCoverage', 'bgShell:test_coveralls'])
-  grunt.registerTask('test:coverage', ['buildCoverage', 'bgShell:test_coverage'])
+  grunt.registerTask('test:coveralls', ['buildCoverage', 'bgShell:test_coveralls', 'bgShell:send_coveralls_coverage'])
+  grunt.registerTask('test:coverage', ['buildCoverage', 'bgShell:test_coverage', 'bgShell:open_coverage'])
 
   grunt.registerTask('default', ['build', 'bgShell:npm_link'])
   grunt.registerTask('prepublish', ['build'])

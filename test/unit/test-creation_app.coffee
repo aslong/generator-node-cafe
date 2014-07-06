@@ -1,6 +1,6 @@
 ### global describe, beforeEach, it ###
 'use strict'
-{ runDefaultGenerator } = require('../helpers')
+{ runGenerator, runDefaultGenerator } = require('../helpers')
 
 assert  = require('yeoman-generator').assert
 path    = require('path')

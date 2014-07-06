@@ -23,12 +23,8 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
     @pkg = require("../../package.json")
     @addStatusToReadme = true
 
-    try
-      @authorEmail = execSync('git config --global --get user.email')
-      @authorName = execSync('git config --global --get user.name')
-    catch e
-      @authorEmail = ''
-      @authorName = ''
+    @authorEmail = execSync('git config --global --get user.email')
+    @authorName = execSync('git config --global --get user.name')
 
   prompting: () ->
     finishedPrompting = @async()

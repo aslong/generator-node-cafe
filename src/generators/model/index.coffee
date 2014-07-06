@@ -64,15 +64,9 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
         runGenerator('test', "model #{ @name }", {
           integration: true
           perf: true
-        }, {
-
-        }, () ->
-          done()
-        )
+        }, {}, done)
       else if @options['unit-test']
-        runGenerator('test', "model #{ @name }", {}, {}, () ->
-          done()
-        )
+        runGenerator('test', "model #{ @name }", {}, {}, done)
       else
         done()
 

@@ -16,9 +16,7 @@ module.exports =
     .withArguments(args)
     .withOptions(options)
     .withPrompt(prompts)
-    .on('end', () ->
-      cb() if cb?
-    )
+    .on('end', cb)
 
   runDefaultGenerator: (cb) ->
     module.exports.runGenerator('app', 'hi', {
