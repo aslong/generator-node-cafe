@@ -15,11 +15,11 @@ module.exports = (grunt) ->
       npm_link:
         cmd: "sudo npm link"
       copy_templates:
-        cmd: "cp -r templates/templates_app generators/app/templates && cp -r templates/templates_connector generators/connector/templates && cp -r templates/templates_test generators/test/templates"
+        cmd: "cp -r templates/templates_app generators/app/templates && cp -r templates/templates_connector generators/connector/templates && cp -r templates/templates_test generators/test/templates && cp -r templates/templates_model generators/model/templates"
       copy_templates_coverage:
-        cmd: "cp -r templates/templates_app bin/coverage-generators/app/templates && cp -r templates/templates_connector bin/coverage-generators/connector/templates && cp -r templates/templates_test bin/coverage-generators/test/templates"
+        cmd: "cp -r templates/templates_app bin/coverage-generators/app/templates && cp -r templates/templates_connector bin/coverage-generators/connector/templates && cp -r templates/templates_test bin/coverage-generators/test/templates && cp -r templates/templates_model bin/coverage-generators/model/templates"
       build_bin:
-        cmd: "mkdir bin && cp package.json bin/package.json"
+        cmd: "mkdir -p bin && cp package.json bin/package.json"
 
     clean:
       build: ['generators/', 'bin/', 'coverage/']
@@ -40,6 +40,13 @@ module.exports = (grunt) ->
         src: ['**/*.js']
         dest: 'bin/coverage-generators'
         ext: '.js'
+      helpers:
+        expand: true,
+        cwd:'helpers'
+        src: ['**/*.js']
+        dest: 'bin/coverage-helpers'
+        ext: '.js'
+
 
     mochacli:
       options:

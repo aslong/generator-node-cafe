@@ -5,3 +5,4 @@ npm-debug.log
 /bin/
 /coverage/
 .yo-rc.json
+/helpers/

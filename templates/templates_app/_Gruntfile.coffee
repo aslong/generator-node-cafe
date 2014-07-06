@@ -20,15 +20,15 @@ module.exports = (grunt) ->
       start_box:
         cmd: "docker run -v $PWD:/usr/src/<%= projectName %> -t -i '<%= projectName %>' /bin/bash"
       test_coveralls:
-        cmd: "mkdir ./coverage && JSCOV=1 <%= projectEnvName %>=test ./node_modules/mocha/bin/_mocha -R mocha-lcov-reporter > ./coverage/lcov.info && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        cmd: "mkdir -p ./coverage && JSCOV=1 <%= projectEnvName %>=test ./node_modules/mocha/bin/_mocha -R mocha-lcov-reporter > ./coverage/lcov.info && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
       test_coverage:
-        cmd: "mkdir ./coverage && JSCOV=1 <%= projectEnvName %>=test ./node_modules/mocha/bin/_mocha --reporter html-cov > ./coverage/coverage.html && open ./coverage/coverage.html"
+        cmd: "mkdir -p ./coverage && JSCOV=1 <%= projectEnvName %>=test ./node_modules/mocha/bin/_mocha --reporter html-cov > ./coverage/coverage.html && open ./coverage/coverage.html"
       start_service_local:
         cmd: "DEBUG=* <%= projectEnvName %>=local node ./bin/src/index.js"
       start_service_production:
         cmd: "DEBUG=* <%= projectEnvName %>=production node ./bin/src/index.js"
       build_bin:
-        cmd: "mkdir bin"
+        cmd: "mkdir -p bin"
       cp_static:
         cmd: "cp -rf src/static/ bin/src/static/"
 

@@ -10,6 +10,7 @@ _        = require('underscore')
 module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
   constructor: () ->
     yeoman.generators.Base.apply(this, arguments)
+
     this.option('no-unit', {
       desc: "Don't generate a unit test"
       type: Boolean

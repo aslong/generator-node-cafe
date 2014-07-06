@@ -10,7 +10,6 @@ _        = require('underscore')
 module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
   constructor: () ->
     yeoman.generators.Base.apply(this, arguments)
-    @addStatusToReadme = true
 
     this.argument('name', {
       desc: "The name of the project to create."
@@ -20,15 +19,16 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
       defaults: undefined
     })
 
+  initializing: () =>
+    @pkg = require("../../package.json")
+    @addStatusToReadme = true
+
     try
       @authorEmail = execSync('git config --global --get user.email')
       @authorName = execSync('git config --global --get user.name')
     catch e
       @authorEmail = ''
       @authorName = ''
-
-  initializing: () =>
-    @pkg = require("../../package.json")
 
   prompting: () ->
     finishedPrompting = @async()

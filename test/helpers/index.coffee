@@ -17,7 +17,7 @@ module.exports =
     .withOptions(options)
     .withPrompt(prompts)
     .on('end', () ->
-      cb()
+      cb() if cb?
     )
 
   runDefaultGenerator: (cb) ->
