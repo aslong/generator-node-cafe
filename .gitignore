@@ -1,9 +1,7 @@
 /node_modules/
-/temp/
 .DS_Store
 npm-debug.log
 /generators/
 /bin/
 /coverage/
-coverage.html
 .yo-rc.json

@@ -1,5 +1,5 @@
 .DS_Store
-node_modules
-bin
-coverage.html
+/node_modules/
+/bin/
 /coverage/
+npm-debug.log
