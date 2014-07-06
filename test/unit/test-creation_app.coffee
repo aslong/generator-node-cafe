@@ -49,3 +49,14 @@ describe 'node-cafe generator', () ->
       'README.md'
     ])
     done()
+
+  if process.env.JSCOV
+    it 'installs dependencies', (done) ->
+      helpers.testDirectory(path.join(__dirname, '../../bin/test/temp'), () ->
+        runGenerator('app', 'hi', {
+          'skip-install': false
+        }, {
+          'name': 'myProject'
+          'keywords': 'project, my, test'
+        }, done)
+      )

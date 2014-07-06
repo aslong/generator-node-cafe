@@ -132,6 +132,9 @@ module.exports = NodeCafeGenerator = yeoman.generators.Base.extend(
 
   install:
     installDependencies: () ->
+      if process.env.JSCOV
+        @installDependencies = () -> return true
+
       if not @options['skip-install']
         @installDependencies()
 
