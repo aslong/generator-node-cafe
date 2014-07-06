@@ -7,7 +7,7 @@ helpers = require('yeoman-generator').test
 
 cafeHelpers = require('../helpers')
 
-describe 'node-cafe test generator', () ->
+describe 'node-cafe:test generator', () ->
   it 'creates a unit test for a model', (done) ->
     helpers.testDirectory(path.join(__dirname, '../../bin/test/temp'), () ->
       cafeHelpers.runDefaultGenerator () ->

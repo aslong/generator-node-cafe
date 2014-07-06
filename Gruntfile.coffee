@@ -9,11 +9,11 @@ module.exports = (grunt) ->
         execOpts:
           maxBuffer: false
       test_coveralls:
-        cmd: "JSCOV=1 NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        cmd: "mkdir ./coverage && JSCOV=1 ./node_modules/mocha/bin/_mocha -R mocha-lcov-reporter > ./coverage/lcov.info && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
       test_coverage:
-        cmd: "JSCOV=1 mocha --reporter html-cov > coverage.html && open coverage.html"
+        cmd: "mkdir ./coverage && JSCOV=1 ./node_modules/mocha/bin/_mocha --reporter html-cov > ./coverage/coverage.html && open ./coverage/coverage.html"
       npm_link:
-        cmd: "sudo npm link && yo node-cafe"
+        cmd: "sudo npm link"
       copy_templates:
         cmd: "cp -r templates_app generators/app/templates && cp -r templates_connector generators/connector/templates && cp -r templates_test generators/test/templates"
       copy_templates_coverage:
@@ -22,7 +22,7 @@ module.exports = (grunt) ->
         cmd: "mkdir bin && cp package.json bin/package.json"
 
     clean:
-      build: ['generators/', 'bin/', 'coverage/', 'coverage.html']
+      build: ['generators/', 'bin/', 'coverage/']
 
     coffee:
       compile:

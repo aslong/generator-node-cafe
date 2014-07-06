@@ -20,7 +20,7 @@ module.exports = (grunt) ->
       start_box:
         cmd: "docker run -v $PWD:/usr/src/<%= projectName %> -t -i '<%= projectName %>' /bin/bash"
       test_coveralls:
-        cmd: "JSCOV=1 <%= projectEnvName %>=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        cmd: "JSCOV=1 <%= projectEnvName %>=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
       test_coverage:
         cmd: "JSCOV=1 <%= projectEnvName %>=test ./node_modules/mocha/bin/_mocha --reporter html-cov test > coverage.html && open coverage.html"
       start_service_local:
